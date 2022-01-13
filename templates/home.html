@@ -1,7 +1,68 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="container">
-        <h2>Our story</h2>
-        <p>Lorem ipsum...</p>
-    </div>
+
+
+    <section class="hero is-large"
+        style="background-image: url( {{url_for('static', filename='/img/cavesprings1.jpg')}})">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title" style="font-family:EB Garamond">Bruno & Valeria</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <div class="content has-text-centered">
+                    <h1 class="title has-text-weight-light" style="font-family:Garamond">Our Story</h1>
+                    <p class="has-text-weight-light has-text-grey is-size-5" style="font-family:Garamond">
+                    We would have never guessed that what started as a casual 
+                    friendship 5 years ago would turn into a happy relationship that 
+                    keeps growing stronger to this day. It took a series of unlikely 
+                    events and even a broken ankle for us to get together - 
+                    but once we did, it felt like it was meant to be.
+                    </p>
+                    <p class="has-text-weight-light has-text-grey is-size-5" style="font-family:Garamond">
+                    In the past 5 years we had a lot of fun together, traveled the 
+                    world, picked up new hobbies and new languages - or at least we 
+                    tried. We went through a whole year of lockdown in a small 
+                    apartment and somehow we made it.
+                    </p>
+                    <p class="has-text-weight-light has-text-grey is-size-5" style="font-family:Garamond">
+                    Now we are excited to take our relationship to the next level 
+                    and we are inviting you to celebrate this special day with us!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="columns">
+            <div class="column is-one-quarter is-offset-one-quarter">
+                <div class="content has-text-centered">
+                    <h1 class="title has-text-weight-light" style="font-family:Garamond">Ceremony</h1>
+                    <p>July 17, 2022 - 2:30pm</p>
+                    <p class="mb-0">Cave Springs Vineyard</p>
+                    <p class="has-text-grey">4043 Cave Springs Road<br>
+                    Beamsvilee, ON</p>
+                    <button class="button is-black">Directions</button>
+                </div>
+            </div>
+            <div class="column is-one-quarter">
+                <div class="content has-text-centered">
+                    <h1 class="title has-text-weight-light" style="font-family:Garamond">Reception</h1>
+                    <p>July 17, 2022 - 2:30pm</p>
+                    <p class="mb-0">Inn on the Twenty Restaurant</p>
+                    <p class="has-text-grey">3836 Main St<br>
+                    Jordan Station, ON</p>
+                    <button class="button is-black">Directions</button>
+                </div>
+            </div>
+            <div class="column"></div>
+        </div>
+    </section>
+    
+    <
+    
 {% endblock content %}
