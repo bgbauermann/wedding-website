@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="section">
+    <div class="columns">
+        <div class="column is-half">
+            <h1 class="title">Guest Details</h1>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }} 
+                <div class="field">
+                    {{ form.name.label(class="label")}}
+                    <div class="control">
+                        {{ form.name(class="input")}}
+                    </div>
+                </div>
+                
+                <div class="field">
+                    {{ form.email.label(class="label")}}
+                    <div class="control">
+                        {{ form.email(class="input")}}
+                    </div>
+                </div>
+
+                <div class="field">
+                    {{ form.attendance.label(class="label")}}
+                    <div class="control">
+                        {{ form.attendance(class="radio")}}
+                    </div>
+                </div>
+                
+                <div class="field">
+                    {{ form.menu.label(class="label")}}
+                    <div class="control">
+                        {{ form.menu(class="input")}}
+                    </div>
+                </div>  
+
+                <div class="field">
+                    {{ form.transportation.label(class="label")}}
+                    <div class="control">
+                        {{ form.transportation(class="input")}}
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <div class="control">
+                    {{ form.submit(class="button is-dark")}}
+                    </div>
+                </div>
+    
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}
