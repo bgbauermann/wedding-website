@@ -4,15 +4,9 @@
 <section class="section">
     <div class="columns">
         <div class="column is-half">
-            <h1 class="title">RSVP</h1>
+            <h1 class="title">Enter you email</h1>
             <form method="POST" action="">
                 {{ form.hidden_tag() }} 
-                <div class="field">
-                    {{ form.name.label(class="label")}}
-                    <div class="control">
-                        {{ form.name(class="input")}}
-                    </div>
-                </div>
                 
                 <div class="field">
                     {{ form.email.label(class="label")}}

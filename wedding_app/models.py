@@ -7,8 +7,8 @@ def load_user(user_id):
 
 class Guest(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    parent_guest = db.Column(db.String)
-    name = db.Column(db.String(50), nullable=False)
+    guest_group = db.Column(db.String)
+    name = db.Column(db.String(50))
     email = db.Column(db.String(100), unique=True, nullable=False)
     attendance = db.Column(db.String())
     menu = db.Column(db.String())
