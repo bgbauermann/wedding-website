@@ -1,12 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<section class="hero is-large"
-    style="background-image: url( {{url_for('static', filename='/img/cavesprings1.jpg')}})">
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <p class="title" style="font-family:EB Garamond">Bruno & Valeria</p>
-        </div>
+<section class="section is-medium top-image"
+    style="background-image: url(https://images.unsplash.com/photo-1504279577054-acfeccf8fc52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNjQxfDB8MXxzZWFyY2h8N3x8dmluZXlhcmR8ZW58MHx8fHwxNjM5MTY5MDcy&ixlib=rb-1.2.1&q=80&w=1080&utm_source=eventcreate_client_app&utm_medium=referral&utm_campaign=api-credit)">
+    <div class="container"></div>
+    <div class="container has-text-centered">
+        <p class="is-size-1 has-text-white" style="font-family: Garamond">Bruno & Valeria</p>
     </div>
 </section>
 
@@ -62,5 +61,31 @@
     </div>
 </section>
 
+
+<section class="section is-medium has-background-black">
+    <div class="content has-text-centered">
+        <p class="title has-text-white is-3" style="font-family:Garamond">Join us on July 17</p>
+        <p class="subtitle has-text-white is-6">We look forward to hosting you!</p>
+        <a class="button is-size-4" href={{ url_for('rsvp')}}>RSVP now</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="content">
+        <h1>FAQ</h1>
+        <ol>
+            <strong><li>What's the dress code?</li></strong>
+            <p>Business casual, you don't need a suit, just be comfortable.</p>
+            <strong><li>Do I need to be vaccinated?</li></strong>
+            <p>For the reception only, it's an indoor space and the venue will require proof of vaccination</p>
+        </ol>
+    </div>
+</section>
+
+<footer class="footer has-background-black">
+    <div class="content has-text-centered">
+        <p class="has-text-white">Built by the groom.</p>
+    </div>
+</footer>
     
 {% endblock content %}
