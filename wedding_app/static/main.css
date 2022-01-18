@@ -1,0 +1,8 @@
+.top-image {
+background-image: url("img/cavesprings1.jpg");
+background-color: #cccccc;
+background-position: center bottom;
+background-repeat: no-repeat;
+background-size: cover;
+position: relative;
+}
