@@ -2,40 +2,32 @@
 {% block content %}
 
 <section class="section">
-
-    <h1 class="title">Your Party</h1>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Guests</th>
-                <th></th>
-            <tr>
-        <thead>
-        <tbody>
-            {% for g in guests %}
-                <tr>
+    <div class="columns">
+        <div class="column is-half">
+            <nav class="panel">
+                <p class="panel-heading">Your party<p>
+                {% for g in guests %}
                     {% if (g.guest_group == current_user.email) or (g.email == current_user.email) %}
-                        <td><a href={{ url_for('edit_guest', guest_id=g.id) }}>{{ g.name }}</a></td>
+                        <div class="panel-block">
+                            <a href={{ url_for('edit_guest', guest_id=g.id) }}>
+                                {{ g.name }}
+                            </a>
+                            {% if (g != current_user) and (g.guest_group == current_user.email) %}
+                                <a class="delete ml-2" href={{ url_for('delete_guest', guest_id=g.id) }}></a>
+                            {% endif %}        
+                        </div>
                     {% else %}
-                        <td>{{ g.name }}</td>
+                        <a class="panel-block">{{ g.name }}</a>
                     {% endif %}
-                    {% if (g != current_user) and (g.guest_group == current_user.email) %}
-                        <td><a class="delete" href={{ url_for('delete_guest', guest_id=g.id) }}></a></td>
-                    {% else %}
-                        <td></td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="field">
-        <div class="control">
-            <a class="button" href={{ url_for('add_guest') }}>Add Guest</a>
+                    
+                {% endfor %}
+                <div class="panel-block">
+                    <a class="button" href={{ url_for('add_guest') }}>Add Guest</a>
+                </div>    
+            </nav>
         </div>
     </div>
-            
+                
     <div class="field">
         <div class="control">
             <a class="button is-dark" href={{ url_for('home') }}>Done</a>

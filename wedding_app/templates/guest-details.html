@@ -4,47 +4,49 @@
 <section class="section">
     <div class="columns">
         <div class="column is-half">
-            <h1 class="title">Guest Details</h1>
-            <form method="POST" action="">
-                {{ form.hidden_tag() }} 
-                <div class="field">
-                    {{ form.name.label(class="label")}}
-                    <div class="control">
-                        {{ form.name(class="input")}}
+            <div class="box">
+                <h1 class="title">Guest Details</h1>
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }} 
+                    <div class="field">
+                        {{ form.name.label(class="label")}}
+                        <div class="control">
+                            {{ form.name(class="input")}}
+                        </div>
                     </div>
-                </div>
-                
-                <div class="field">
-                    {{ form.email.label(class="label")}}
-                    <div class="control">
-                        {% if email_edit %}           
-                            {% if form.email.errors %}
-                                {{ form.email(class="input is-danger") }}
-                                    {% for error in form.email.errors %}
-                                        <span class="has-text-danger">{{ error }}</span>
-                                    {% endfor %}
-                            {% else %}                    
-                                {{ form.email(class="input")}}
+                    
+                    <div class="field">
+                        {{ form.email.label(class="label")}}
+                        <div class="control">
+                            {% if email_edit %}           
+                                {% if form.email.errors %}
+                                    {{ form.email(class="input is-danger") }}
+                                        {% for error in form.email.errors %}
+                                            <span class="has-text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                {% else %}                    
+                                    {{ form.email(class="input")}}
+                                {% endif %}
+                            {% else %}
+                                {{ form.email(class="input is-static")}}
                             {% endif %}
-                        {% else %}
-                            {{ form.email(class="input is-static")}}
-                        {% endif %}
+                        </div>
                     </div>
-                </div>
-
-                <div class="field">
-                    {{ form.attendance.label(class="label")}}
-                    <div class="control">
-                        {{ form.attendance(class="radio")}}
-                    </div>
-                </div>         
     
-                <div class="field">
-                    <div class="control">
-                        {{ form.save(class="button is-dark")}}
-                    </div>
-                </div>               
-            </form>
+                    <div class="field">
+                        {{ form.attendance.label(class="label")}}
+                        <div class="control">
+                            {{ form.attendance(class="radio")}}
+                        </div>
+                    </div>         
+        
+                    <div class="field">
+                        <div class="control">
+                            {{ form.save(class="button is-dark")}}
+                        </div>
+                    </div>               
+                </form>
+            </div>
         </div>
     </div>
 </section>
