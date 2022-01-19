@@ -12,8 +12,8 @@ def create_app(config_class=Config):
     application = Flask(__name__)
     application.config.from_object(Config)
 
-    db.init_app(app)
-    login_manager.init_app(app)
+    db.init_app(application)
+    login_manager.init_app(application)
 
     from wedding_app.main.routes import main
     from wedding_app.guests.routes import guests
