@@ -13,7 +13,7 @@
                                 {{ g.name }}
                             </a>
                             {% if (g != current_user) and (g.guest_group == current_user.email) %}
-                                <a class="delete ml-2" href={{ url_for('delete_guest', guest_id=g.id) }}></a>
+                                <a class="delete ml-2" data-guest-route={{ url_for('delete_guest', guest_id=g.id) }}></a>
                             {% endif %}        
                         </div>
                     {% else %}
@@ -34,5 +34,19 @@
         </div>
     </div>
 
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box content has-text-centered">
+            <p>Are you sure you want to delete this guest?</p>
+            <a class="button is-dark" id="confirm-delete">Yes</a>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
 </section>
+
+<script src={{url_for('static', filename='guests.js')}}> </script>
+    
 {% endblock content %}

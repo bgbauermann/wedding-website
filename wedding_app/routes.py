@@ -1,4 +1,3 @@
-
 from flask import render_template, flash, url_for, redirect, request, abort
 from wedding_app import app, db
 from wedding_app.forms import RSVPForm, GuestForm, NewGuestForm
