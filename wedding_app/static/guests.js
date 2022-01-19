@@ -7,7 +7,7 @@ const modalConfirm = document.querySelector('#confirm-delete');
 (document.querySelectorAll('.delete') || []).forEach(el => {
     
     el.addEventListener('click', () => {
-        modalConfirm.href = el.dataset.guestRoute; 
+        modalConfirm.action = el.dataset.guestRoute; 
         modal.classList.add('is-active');
     });
 });

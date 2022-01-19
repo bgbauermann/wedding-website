@@ -1,13 +1,23 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from wedding_app.config import Config
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'as9fdsg8ab73pfbbsv708zs0'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-login_manager = LoginManager(app)
+db = SQLAlchemy()
+login_manager = LoginManager()
 login_manager.login_view = 'rsvp'
 login_manager.login_message = ''
 
-from wedding_app import routes
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+    db.init_app(app)
+    login_manager.init_app(app)
+
+    from wedding_app.main.routes import main
+    from wedding_app.guests.routes import guests
+    app.register_blueprint(main)
+    app.register_blueprint(guests)
+
+    return app

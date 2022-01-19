@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, SubmitField, RadioField, FieldList, FormField
+from wtforms import StringField, EmailField, SubmitField, RadioField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from wedding_app.models import Guest
 

@@ -1,20 +1,15 @@
-from flask import render_template, flash, url_for, redirect, request, abort
-from wedding_app import app, db
-from wedding_app.forms import RSVPForm, GuestForm, NewGuestForm
+from flask import render_template, flash, url_for, redirect, request, abort, Blueprint
+from wedding_app import db
+from wedding_app.guests.forms import RSVPForm, GuestForm, NewGuestForm
 from wedding_app.models import Guest
 from flask_login import login_user, logout_user, current_user, login_required
 
-@app.route('/')
-@app.route('/home')
-def home():
-    logout_user()
-    return render_template('home.html')
+guests = Blueprint('guests', __name__)
 
-
-@app.route('/rsvp', methods=['GET','POST'])
+@guests.route('/rsvp', methods=['GET','POST'])
 def rsvp():
     if current_user.is_authenticated:
-        return redirect(url_for('guests'))
+        return redirect(url_for('guests.list_guests'))
     form = RSVPForm()
     if form.validate_on_submit():
         guest = Guest.query.filter_by(email=form.email.data).first()
@@ -24,27 +19,31 @@ def rsvp():
             db.session.add(guest)
             db.session.commit()
             login_user(guest)
-            return redirect(url_for('edit_guest', guest_id=guest.id))
+            return redirect(url_for('guests.edit_guest', guest_id=guest.id))
         login_user(guest)
-        return redirect(url_for('guests'))
+        return redirect(url_for('guests.list_guests'))
     return render_template('rsvp.html', form=form)
 
+@guests.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('main.home'))
 
-@app.route('/guests', methods=['GET','POST'])
+@guests.route('/guests', methods=['GET','POST'])
 @login_required
-def guests():
+def list_guests():
     group = current_user.guest_group
     guests = Guest.query.filter_by(guest_group=group)
     return render_template('guests.html', guests=guests)
 
 
-@app.route('/add_guest', methods=['GET','POST'])
+@guests.route('/add_guest', methods=['GET','POST'])
 @login_required
 def add_guest():
     guest_count = Guest.query.filter_by(guest_group=current_user.guest_group).count()
     if guest_count >= 5:
         flash("You've reached the maximum number of guests.", "is-danger")
-        return redirect(url_for('guests'))
+        return redirect(url_for('guests.list_guests'))
     form = NewGuestForm()
     if form.validate_on_submit():
         new_guest = Guest(name=form.name.data,
@@ -52,11 +51,11 @@ def add_guest():
                           guest_group=current_user.email)
         db.session.add(new_guest)
         db.session.commit()
-        return redirect(url_for('guests'))
+        return redirect(url_for('guests.list_guests'))
     return render_template('guest-details.html', form=form, email_edit=True)
 
 
-@app.route('/delete_guest/<int:guest_id>', methods=['GET','POST'])
+@guests.route('/delete_guest/<int:guest_id>', methods=['POST'])
 @login_required
 def delete_guest(guest_id):
     guest = Guest.query.get_or_404(guest_id)
@@ -65,10 +64,10 @@ def delete_guest(guest_id):
     else:
         db.session.delete(guest)
         db.session.commit()
-    return redirect(url_for('guests'))
+    return redirect(url_for('guests.list_guests'))
 
 
-@app.route('/guests/<int:guest_id>', methods=['GET','POST'])
+@guests.route('/guests/<int:guest_id>', methods=['GET','POST'])
 @login_required
 def edit_guest(guest_id):
     form = GuestForm()
@@ -80,7 +79,7 @@ def edit_guest(guest_id):
         guest.email = form.email.data
         guest.attendance = form.attendance.data
         db.session.commit()
-        return redirect(url_for('guests'))
+        return redirect(url_for('guests.list_guests'))
     if request.method == 'GET':
         form.name.data = guest.name
         form.email.data = guest.email
