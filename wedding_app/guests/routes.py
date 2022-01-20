@@ -48,6 +48,7 @@ def add_guest():
     if form.validate_on_submit():
         new_guest = Guest(name=form.name.data,
                           email=form.email.data,
+                          attendance=form.attendance.data,
                           guest_group=current_user.email)
         db.session.add(new_guest)
         db.session.commit()
