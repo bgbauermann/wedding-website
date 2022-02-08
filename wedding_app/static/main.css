@@ -6,3 +6,11 @@ background-repeat: no-repeat;
 background-size: cover;
 position: relative;
 }
+
+#pic_tiles img{
+    cursor: pointer;
+}
+
+#pic_tiles img:hover{
+    opacity: 0.7;
+}

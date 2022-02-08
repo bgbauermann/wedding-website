@@ -1,0 +1,58 @@
+{% block pictures %}
+
+<section class="section" id="pic_tiles">
+    <div class="column is-8 is-offset-2">
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical">
+                <div class="tile is-parent p-0">
+                    <div class="tile is-child p-1">
+                        <figure class="image is-4by3">
+                            <img src={{ url_for('static', filename='img/capri.jpeg' ) }}>
+                        </figure>
+                    </div>
+                    <div class="tile is-child p-1">
+                        <figure class="image is-4by3">
+                            <img src={{ url_for('static', filename='img/wedding.jpeg' ) }}>
+                        </figure>
+                    </div>
+                    <div class="tile is-child p-1">
+                        <figure class="image is-4by3">
+                            <img src={{ url_for('static', filename='img/louise.jpeg' ) }}>
+                        </figure>
+                    </div>
+                </div>
+                <div class="tile is-parent p-0">
+                    <div class="tile is-child p-1">
+                        <figure class="image is-4by3">
+                            <img src={{ url_for('static', filename='img/moraine.jpeg' ) }}>
+                        </figure>
+                    </div>
+                    <div class="tile is-child p-1">
+                        <figure class="image is-4by3">
+                            <img src={{ url_for('static', filename='img/viaf.jpeg' ) }}>
+                        </figure>
+                    </div>
+                    <div class="tile is-child p-1">
+                        <figure class="image is-4by3">
+                            <img src={{ url_for('static', filename='img/la.jpeg' ) }}>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal">
+    <div class="modal-background"></div>
+        <div class="modal-content">
+            <figure class="image">
+                <img src={{ url_for('static', filename='img/moraine.jpeg' ) }}>
+            </figure>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+<script src={{url_for('static', filename='pics.js')}}> </script>
+
+{% endblock pictures %}

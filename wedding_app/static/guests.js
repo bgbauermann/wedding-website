@@ -12,7 +12,6 @@ const modalConfirm = document.querySelector('#confirm-delete');
     });
 });
 
-
 // close modals
 (document.querySelectorAll('.modal-background, .modal-close')).forEach(el => {
     const target = el.closest('.modal');
