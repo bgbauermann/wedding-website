@@ -14,7 +14,9 @@ class NewGuestForm(FlaskForm):
                        validators=[DataRequired(),
                                    Length(min=2, max=50)])
     email = EmailField('Email', validators=[DataRequired(), Email(), existing_email_check])
-    attendance = RadioField('Attendance',choices=['Yes','Maybe','No'],
+    attendance = RadioField('Attendance',choices=['Yes','No'],
+                            validators=[DataRequired()])
+    menu = RadioField('Menu',choices=['Roasted Chicken Breast','Prime Rib','Kids Menu'],
                             validators=[DataRequired()])
     save = SubmitField('Save')
     
@@ -23,7 +25,9 @@ class GuestForm(FlaskForm):
                        validators=[DataRequired(),
                                    Length(min=2, max=50)])
     email = EmailField('Email', validators=[DataRequired(), Email()])
-    attendance = RadioField('Attendance',choices=['Yes','Maybe','No'],
+    attendance = RadioField('Attendance',choices=['Yes','No'],
+                            validators=[DataRequired()])
+    menu = RadioField('Menu',choices=['Roasted Chicken Breast','Prime Rib','Kids Menu'],
                             validators=[DataRequired()])
     save = SubmitField('Save')
     

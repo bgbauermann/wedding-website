@@ -41,7 +41,7 @@ def list_guests():
 @login_required
 def add_guest():
     guest_count = Guest.query.filter_by(guest_group=current_user.guest_group).count()
-    if guest_count >= 5:
+    if guest_count >= 6:
         flash("You've reached the maximum number of guests.", "is-danger")
         return redirect(url_for('guests.list_guests'))
     form = NewGuestForm()
@@ -49,6 +49,7 @@ def add_guest():
         new_guest = Guest(name=form.name.data,
                           email=form.email.data,
                           attendance=form.attendance.data,
+                          menu = form.menu.data,
                           guest_group=current_user.email)
         db.session.add(new_guest)
         db.session.commit()
@@ -79,10 +80,12 @@ def edit_guest(guest_id):
         guest.name = form.name.data
         guest.email = form.email.data
         guest.attendance = form.attendance.data
+        guest.menu = form.menu.data
         db.session.commit()
         return redirect(url_for('guests.list_guests'))
     if request.method == 'GET':
         form.name.data = guest.name
         form.email.data = guest.email
         form.attendance.data = guest.attendance
+        form.menu.data = guest.menu
     return render_template('guest-details.html', form=form)

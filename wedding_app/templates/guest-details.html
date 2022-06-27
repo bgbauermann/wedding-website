@@ -38,7 +38,19 @@
                         <div class="control">
                             {{ form.attendance(class="radio")}}
                         </div>
-                    </div>         
+                    </div>       
+                    
+                    <div class="field">
+
+                        <label class="label">Menu - 
+                            <a id="open-menu" style="font-weight: normal">Open Menu</a>
+                        </label>
+                    
+                       
+                        <div class="control">
+                            {{ form.menu(class="radio")}}
+                        </div>
+                    </div> 
         
                     <div class="field">
                         <div class="control">
@@ -50,5 +62,17 @@
         </div>
     </div>
 </section>
+
+<div class="modal">
+    <div class="modal-background"></div>
+        <div class="modal-content">
+            <figure class="image">
+                <img src={{ url_for('static', filename='img/wedding_menu.jpg' ) }}>
+            </figure>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+<script src={{url_for('static', filename='menu.js')}}> </script>
 
 {% endblock content %}

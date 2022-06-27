@@ -5,4 +5,4 @@ const navbarMenu = document.querySelector('.navbar-menu');
 
 burgerIcon.addEventListener('click', () => {
     navbarMenu.classList.toggle('is-active')
-})
+});

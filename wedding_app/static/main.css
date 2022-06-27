@@ -14,3 +14,7 @@ position: relative;
 #pic_tiles img:hover{
     opacity: 0.7;
 }
+
+.label {
+    vertical-align: middle
+}
