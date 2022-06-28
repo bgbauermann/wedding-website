@@ -3,7 +3,6 @@ from wtforms import StringField, EmailField, SubmitField, RadioField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from wedding_app.models import Guest
 
-
 def existing_email_check(self, email):
     guest = Guest.query.filter_by(email=email.data).first()
     if guest:
@@ -16,7 +15,7 @@ class NewGuestForm(FlaskForm):
     email = EmailField('Email', validators=[DataRequired(), Email(), existing_email_check])
     attendance = RadioField('Attendance',choices=['Yes','No'],
                             validators=[DataRequired()])
-    menu = RadioField('Menu',choices=['Roasted Chicken Breast','Prime Rib','Kids Menu'],
+    menu = RadioField('Menu',choices=['Roasted Chicken Breast','Prime Rib','Vegetarian','Kids Menu'],
                             validators=[DataRequired()])
     save = SubmitField('Save')
     
@@ -27,7 +26,7 @@ class GuestForm(FlaskForm):
     email = EmailField('Email', validators=[DataRequired(), Email()])
     attendance = RadioField('Attendance',choices=['Yes','No'],
                             validators=[DataRequired()])
-    menu = RadioField('Menu',choices=['Roasted Chicken Breast','Prime Rib','Kids Menu'],
+    menu = RadioField('Menu',choices=['Roasted Chicken Breast','Prime Rib','Vegetarian','Kids Menu'],
                             validators=[DataRequired()])
     save = SubmitField('Save')
     
