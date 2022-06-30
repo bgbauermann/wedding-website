@@ -34,7 +34,8 @@ def logout():
 def list_guests():
     group = current_user.guest_group
     guests = Guest.query.filter_by(guest_group=group)
-    return render_template('guests.html', guests=guests)
+    menu_warning = any([g.menu is None for g in guests])
+    return render_template('guests.html', guests=guests, menu_warning=menu_warning)
 
 
 @guests.route('/add_guest', methods=['GET','POST'])
@@ -74,7 +75,7 @@ def delete_guest(guest_id):
 def edit_guest(guest_id):
     form = GuestForm()
     guest = Guest.query.get_or_404(guest_id)
-    if (guest.email != current_user.email) and (guest.guest_group != current_user.email):
+    if (guest.guest_group != current_user.guest_group):
         abort(403)
     if form.validate_on_submit():
         guest.name = form.name.data

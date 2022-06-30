@@ -4,21 +4,22 @@
 <section class="section">
     <div class="columns">
         <div class="column is-half">
+            {% if menu_warning %}
+            <div class="notification is-warning">
+                Some guests haven't selected their menu option. Please click on their names to make the selection.
+            </div>
+            {% endif %}
             <nav class="panel">
                 <p class="panel-heading">Your party<p>
                 {% for g in guests %}
-                    {% if (g.guest_group == current_user.email) or (g.email == current_user.email) %}
-                        <div class="panel-block">
-                            <a href={{ url_for('guests.edit_guest', guest_id=g.id) }}>
-                                {{ g.name }}
-                            </a>
-                            {% if (g != current_user) and (g.guest_group == current_user.email) %}
-                                <a class="delete ml-2" data-guest-route={{ url_for('guests.delete_guest', guest_id=g.id) }}></a>
-                            {% endif %}        
-                        </div>
-                    {% else %}
-                        <a class="panel-block">{{ g.name }}</a>
-                    {% endif %}
+                    <div class="panel-block">
+                        <a href={{ url_for('guests.edit_guest', guest_id=g.id) }}>
+                            {{ g.name }}
+                        </a>
+                        {% if (g != current_user) and (g.guest_group == current_user.email) %}
+                            <a class="delete ml-2" data-guest-route={{ url_for('guests.delete_guest', guest_id=g.id) }}></a>
+                        {% endif %}        
+                    </div>
                     
                 {% endfor %}
                 <div class="panel-block">
